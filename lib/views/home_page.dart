@@ -1,3 +1,5 @@
+import 'package:covid_info_app/views/countries_page.dart';
+import 'package:covid_info_app/views/summary_page.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -9,39 +11,46 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  int _counter = 0;
+  int selectedIndex = 0;
+  final widgetOptions = [
+    SummaryPage(),
+    CountriesPage(),
+  ];
 
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
+  final items = [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.info),
+      title: Text('Summary'),
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.flag),
+      title: Text('Countries'),
+    ),
+  ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(title: Text(widget.title)),
+        body: Center(
+          child: widgetOptions.elementAt(
+            selectedIndex,
+          ),
+        ),
+        bottomNavigationBar: BottomNavigationBar(
+          items: items,
+          currentIndex: selectedIndex,
+          fixedColor: Colors.deepPurple,
+          onTap: onItemTapped,
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: Icon(Icons.add),
-      ),
     );
+  }
+
+  void onItemTapped(int index) {
+    setState(() {
+      selectedIndex = index;
+    });
   }
 }

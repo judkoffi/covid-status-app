@@ -26,26 +26,27 @@
   */
 
 import 'package:covid_info_app/models/country.dart';
-import 'package:covid_info_app/models/country_base.dart';
 import 'package:covid_info_app/models/global.dart';
 
 class SummaryResponse {
   String message;
   Global global;
   List<Country> countries;
+  String date;
 
-  SummaryResponse(this.message, this.global, this.countries) {}
+  SummaryResponse(this.message, this.global, this.countries, this.date) {}
 
   factory SummaryResponse.fromJson(Map<String, dynamic> json) {
     Iterable<dynamic> rawCountries = json["Countries"];
     var countries = rawCountries //
-        .map((elt) => CountryBase.fromJson(elt))
+        .map((elt) => Country.fromJson(elt))
         .toList();
 
     return SummaryResponse(
       json["Message"],
       Global.fromJson(json["Global"]),
       countries,
+      json["Date"],
     );
   }
 }

@@ -2,15 +2,15 @@ import 'package:covid_info_app/views/countries_page.dart';
 import 'package:covid_info_app/views/summary_page.dart';
 import 'package:flutter/material.dart';
 
-class HomePage extends StatefulWidget {
-  HomePage({Key key, this.title}) : super(key: key);
+class RootPage extends StatefulWidget {
+  RootPage({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _RootPageState createState() => _RootPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _RootPageState extends State<RootPage> {
   int selectedIndex = 0;
   final widgetOptions = [
     SummaryPage(),

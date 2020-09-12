@@ -26,6 +26,7 @@ class CovidAPIService {
       var str = json.decode(utf8.decode(response.bodyBytes));
       return SummaryResponse.fromJson(str);
     } catch (e) {
+      print(e);
       return null;
     }
   }

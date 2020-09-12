@@ -1,9 +1,9 @@
-import 'package:covid_info_app/models/service_locator.dart';
-import 'package:covid_info_app/views/home_page.dart';
+import 'package:covid_info_app/di/ioc_locator.dart';
+import 'package:covid_info_app/views/root_page.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  getServices();
+  iocLocator();
   runApp(App());
 }
 
@@ -14,10 +14,13 @@ class App extends StatelessWidget {
     return MaterialApp(
       title: 'Covid status',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: HomePage(title: 'Home'),
+      debugShowCheckedModeBanner: false,
+      home: RootPage(
+        title: 'Summary',
+      ),
     );
   }
 }

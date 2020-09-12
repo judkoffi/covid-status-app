@@ -7,9 +7,9 @@ class Country extends CountryBase {
   Country(
     String name,
     String slug,
-    String iso2,
+    String countryCode,
     this.global,
-  ) : super(name, slug, iso2);
+  ) : super(name, slug, countryCode);
 
   factory Country.fromJson(Map<String, dynamic> json) {
     var baseCountry = CountryBase.fromJson(json);

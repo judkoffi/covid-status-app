@@ -12,14 +12,15 @@ class CountryBase {
   String pictureUrl;
 
   CountryBase(this.name, this.slug, this.iso2) {
-    this.pictureUrl = 'https://www.countryflags.io/' + this.iso2 + '/shiny/128.png';
+    this.pictureUrl =
+        'https://www.countryflags.io/${this.iso2.toString().toLowerCase()}/shiny/64.png';
   }
 
   factory CountryBase.fromJson(Map<String, dynamic> json) {
     return CountryBase(
       json['Country'],
       json['Slug'],
-      json['ISO2'],
+      json.containsKey('CountryCode') ? json['CountryCode'] : json['ISO2'],
     );
   }
 }

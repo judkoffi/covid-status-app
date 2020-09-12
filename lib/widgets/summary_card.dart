@@ -1,9 +1,9 @@
-import 'package:covid_info_app/models/summary_response.dart';
+import 'package:covid_info_app/models/summary_global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SummaryCard extends StatelessWidget {
-  final SummaryResponse response;
+  final SummaryGlobal response;
 
 /*
  "Global": {

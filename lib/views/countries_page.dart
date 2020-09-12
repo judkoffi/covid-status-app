@@ -1,5 +1,6 @@
 import 'package:covid_info_app/models/country_base.dart';
 import 'package:covid_info_app/services/covid_api_service.dart';
+import 'package:covid_info_app/views/country_summary_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ioc/ioc.dart';
 
@@ -40,19 +41,27 @@ class _CountriesPageState extends State<CountriesPage> {
       child = ListView.builder(
         itemCount: countries.length,
         itemBuilder: (BuildContext ctx, int index) {
-          return Card(
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: <Widget>[
-                ListTile(
-                  leading: FadeInImage(
-                    image: NetworkImage(countries[index].pictureUrl),
-                    placeholder: AssetImage('question-mark.png'),
+          return GestureDetector(
+            onTap: () => {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => CountrySummaryPage()),
+              )
+            },
+            child: Card(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: <Widget>[
+                  ListTile(
+                    leading: FadeInImage(
+                      image: NetworkImage(countries[index].pictureUrl),
+                      placeholder: AssetImage('question-mark.png'),
+                    ),
+                    title: Text('${countries[index].name}'),
+                    subtitle: Text('${countries[index].iso2}'),
                   ),
-                  title: Text('${countries[index].name}'),
-                  subtitle: Text('${countries[index].iso2}'),
-                ),
-              ],
+                ],
+              ),
             ),
           );
         },

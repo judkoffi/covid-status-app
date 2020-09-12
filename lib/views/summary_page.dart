@@ -1,4 +1,4 @@
-import 'package:covid_info_app/models/summary_response.dart';
+import 'package:covid_info_app/models/summary_global.dart';
 import 'package:covid_info_app/services/covid_api_service.dart';
 import 'package:covid_info_app/widgets/summary_card.dart';
 import 'package:flutter/material.dart';
@@ -31,7 +31,7 @@ class _SummaryPageState extends State<SummaryPage> {
     );
   }
 
-  Widget builderFunc(context, AsyncSnapshot<SummaryResponse> snapshot) {
+  Widget builderFunc(context, AsyncSnapshot<SummaryGlobal> snapshot) {
     Widget card;
     if (snapshot.hasError) {
       card = Padding(

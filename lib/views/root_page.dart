@@ -13,8 +13,12 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   int selectedIndex = 0;
   final widgetOptions = [
-    SummaryPage(),
-    CountriesPage(),
+    SummaryPage(
+      title: 'Summary',
+    ),
+    CountriesPage(
+      title: 'Countries',
+    ),
   ];
 
   final items = [

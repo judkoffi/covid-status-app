@@ -47,7 +47,7 @@ class _CountriesPageState extends State<CountriesPage> {
                 ListTile(
                   leading: FadeInImage(
                     image: NetworkImage(countries[index].pictureUrl),
-                    placeholder: AssetImage(''),
+                    placeholder: AssetImage('question-mark.png'),
                   ),
                   title: Text('${countries[index].name}'),
                   subtitle: Text('${countries[index].iso2}'),

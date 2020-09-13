@@ -5,6 +5,7 @@ import 'package:covid_info_app/models/summary_country.dart';
 import 'package:covid_info_app/widgets/icon_tile.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/typicons_icons.dart';
 
 class SummaryCountryCard extends StatefulWidget {
   final List<SummaryCountry> summaries;
@@ -21,6 +22,50 @@ class _SummaryCountryCardState extends State<SummaryCountryCard> {
   final List<SummaryCountry> summaries;
   final CountryBase country;
   _SummaryCountryCardState(this.summaries, this.country);
+
+  Widget infoRow() {
+    return Row(
+      children: [
+        Column(
+          children: [
+            Row(
+              children: <Widget>[
+                IconTile(
+                  backColor: Color(0xffFFECDD),
+                  icon: Typicons.info_outline,
+                  value: '${summaries?.last?.active ?? 0} cases',
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+            Row(
+              children: <Widget>[
+                IconTile(
+                  backColor: Color(0xffFFECDD),
+                  icon: Typicons.info_outline,
+                  value: '${summaries?.last?.deaths ?? 0} death',
+                ),
+              ],
+            ),
+          ],
+        ),
+        Column(
+          children: [
+            Row(
+              children: <Widget>[
+                IconTile(
+                  backColor: Color(0xffFFECDD),
+                  icon: Typicons.info_outline,
+                  value: '${summaries?.last?.recovered ?? 0} recovered',
+                ),
+              ],
+            ),
+            SizedBox(height: 10),
+          ],
+        ),
+      ],
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -96,7 +141,7 @@ class _SummaryCountryCardState extends State<SummaryCountryCard> {
                 Image.network(country.pictureUrl, height: 80),
                 Container(
                   width: MediaQuery.of(context).size.width - 100,
-                  height: 220,
+                  height: 300,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -110,57 +155,15 @@ class _SummaryCountryCardState extends State<SummaryCountryCard> {
                         style: TextStyle(fontSize: 15, color: Colors.grey),
                       ),
                       SizedBox(height: 20),
-                      Row(
-                        children: [
-                          Column(
-                            children: [
-                              Row(
-                                children: <Widget>[
-                                  IconTile(
-                                    backColor: Color(0xffFFECDD),
-                                    icon: Icons.info,
-                                    value: '${summaries.last.active} cases',
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                children: <Widget>[
-                                  IconTile(
-                                    backColor: Color(0xffFFECDD),
-                                    icon: Icons.info,
-                                    value: '${summaries.last.deaths} death',
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                          Column(
-                            children: [
-                              Row(
-                                children: <Widget>[
-                                  IconTile(
-                                    backColor: Color(0xffFFECDD),
-                                    icon: Icons.info,
-                                    value:
-                                        '${summaries.last.recovered} recovered',
-                                  ),
-                                ],
-                              ),
-                              SizedBox(height: 10),
-                              Row(
-                                children: <Widget>[
-                                  IconTile(
-                                    backColor: Color(0xffFFECDD),
-                                    icon: Icons.info,
-                                    value: '${summaries.last.confirmed} cases',
-                                  ),
-                                ],
-                              ),
-                            ],
-                          ),
-                        ],
+                      IconTile(
+                        backColor: Colors.orangeAccent,
+                        icon: Icons.info,
+                        value: 'Last 24 hours',
                       ),
+                      SizedBox(height: 20),
+                      summaries.isEmpty
+                          ? Row(children: [Text("No data")])
+                          : infoRow()
                     ],
                   ),
                 ),
@@ -172,7 +175,7 @@ class _SummaryCountryCardState extends State<SummaryCountryCard> {
               style: TextStyle(fontSize: 22),
             ),
             SizedBox(height: 16),
-            chartWidget,
+            summaries.isEmpty ? Center(child: Text("No data")) : chartWidget,
           ],
         ),
       ),

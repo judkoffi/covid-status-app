@@ -26,6 +26,7 @@ class IconTile extends StatelessWidget {
           Text(value),
         ],
       ),
+      margin: EdgeInsets.only(right: 10),
     );
   }
 }

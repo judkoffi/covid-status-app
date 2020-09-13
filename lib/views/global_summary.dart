@@ -48,8 +48,6 @@ class _GlobalSummaryViewState extends State<GlobalSummaryView> {
         height: 60,
       );
     }
-    return Center(
-      child: card,
-    );
+    return card;
   }
 }

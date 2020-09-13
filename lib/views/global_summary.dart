@@ -6,15 +6,15 @@ import 'package:ioc/ioc.dart';
 
 //GetIt getIt = GetIt.instance;
 
-class SummaryPage extends StatefulWidget {
-  SummaryPage({Key key, this.title}) : super(key: key);
+class GlobalSummaryView extends StatefulWidget {
+  GlobalSummaryView({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _SummaryPageState createState() => _SummaryPageState();
+  _GlobalSummaryViewState createState() => _GlobalSummaryViewState();
 }
 
-class _SummaryPageState extends State<SummaryPage> {
+class _GlobalSummaryViewState extends State<GlobalSummaryView> {
   final CovidAPIService infoService = Ioc().use('CovidAPIService');
 
   @override

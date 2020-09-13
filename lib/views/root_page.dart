@@ -1,6 +1,9 @@
-import 'package:covid_info_app/views/countries_page.dart';
-import 'package:covid_info_app/views/summary_page.dart';
+import 'package:covid_info_app/common/style.dart';
+import 'package:covid_info_app/views/countries.dart';
+import 'package:covid_info_app/views/global_summary.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttericon/linecons_icons.dart';
+import 'package:fluttericon/typicons_icons.dart';
 
 class RootPage extends StatefulWidget {
   RootPage({Key key, this.title}) : super(key: key);
@@ -13,21 +16,21 @@ class RootPage extends StatefulWidget {
 class _RootPageState extends State<RootPage> {
   int selectedIndex = 0;
   final widgetOptions = [
-    SummaryPage(
-      title: 'Summary',
+    GlobalSummaryView(
+      title: 'Global',
     ),
-    CountriesPage(
+    CountriesView(
       title: 'Countries',
     ),
   ];
 
   final items = [
     BottomNavigationBarItem(
-      icon: Icon(Icons.info),
-      title: Text('Summary'),
+      icon: Icon(Linecons.globe),
+      title: Text('Global'),
     ),
     BottomNavigationBarItem(
-      icon: Icon(Icons.flag),
+      icon: Icon(Typicons.flag),
       title: Text('Countries'),
     ),
   ];
@@ -36,6 +39,7 @@ class _RootPageState extends State<RootPage> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Style.bgColor,
         appBar: AppBar(title: Text(widget.title)),
         body: Center(
           child: widgetOptions.elementAt(
@@ -45,7 +49,7 @@ class _RootPageState extends State<RootPage> {
         bottomNavigationBar: BottomNavigationBar(
           items: items,
           currentIndex: selectedIndex,
-          fixedColor: Colors.deepPurple,
+          fixedColor: Colors.teal,
           onTap: onItemTapped,
         ),
       ),

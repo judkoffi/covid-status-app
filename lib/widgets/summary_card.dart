@@ -15,42 +15,46 @@ class SummaryCard extends StatelessWidget {
     "TotalRecovered": 18989930
   },
   */
-  SummaryCard(this.response) {}
+  SummaryCard(this.response);
 
+  Widget buildTile(String key, int value) {
+    return ListTile(
+      leading: Icon(
+        Icons.new_releases,
+        size: 70,
+      ),
+      title: Text(
+        '$key',
+        style: TextStyle(color: Colors.white),
+      ),
+      subtitle: Text(
+        '$value',
+        style: TextStyle(color: Colors.white),
+      ),
+      contentPadding: EdgeInsets.all(10),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Column(children: [
-      Container(
-        //width: 200,
-        child: Card(
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(15.0),
-          ),
-          color: Colors.grey,
-          elevation: 10,
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: <Widget>[
-              ListTile(
-                leading: Icon(
-                  Icons.new_releases,
-                  size: 70,
-                ),
-                title: Text(
-                  'New Confirmed ',
-                  style: TextStyle(color: Colors.white),
-                ),
-                subtitle: Text(
-                  '${response.global.newConfirmed}',
-                  style: TextStyle(color: Colors.white),
-                ),
-                contentPadding: EdgeInsets.all(10),
-              ),
-            ],
-          ),
+    var widgets = response.global
+        .toMap()
+        .entries
+        .map((e) => buildTile(e.key, e.value))
+        .toList();
+    return Container(
+      //width: 200,
+      child: Card(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(15.0),
+        ),
+        color: Colors.grey,
+        elevation: 10,
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: widgets,
         ),
       ),
-    ]);
+    );
   }
 }

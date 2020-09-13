@@ -1,18 +1,18 @@
 import 'package:covid_info_app/models/country_base.dart';
 import 'package:covid_info_app/services/covid_api_service.dart';
-import 'package:covid_info_app/views/country_summary_page.dart';
+import 'package:covid_info_app/views/country_summary.dart';
 import 'package:flutter/material.dart';
 import 'package:ioc/ioc.dart';
 
-class CountriesPage extends StatefulWidget {
-  CountriesPage({Key key, this.title}) : super(key: key);
+class CountriesView extends StatefulWidget {
+  CountriesView({Key key, this.title}) : super(key: key);
   final String title;
 
   @override
-  _CountriesPageState createState() => _CountriesPageState();
+  _CountriesViewState createState() => _CountriesViewState();
 }
 
-class _CountriesPageState extends State<CountriesPage> {
+class _CountriesViewState extends State<CountriesView> {
   final CovidAPIService infoService = Ioc().use('CovidAPIService');
 
   @override
@@ -38,6 +38,7 @@ class _CountriesPageState extends State<CountriesPage> {
       );
     } else if (snapshot.hasData) {
       List<CountryBase> countries = snapshot.data;
+      countries.sort((a, b) => a.name.compareTo(b.name));
       child = ListView.builder(
         itemCount: countries.length,
         itemBuilder: (BuildContext ctx, int index) {
@@ -45,10 +46,13 @@ class _CountriesPageState extends State<CountriesPage> {
             onTap: () => {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => CountrySummaryPage()),
+                MaterialPageRoute(
+                  builder: (context) => CountrySummaryView(countries[index]),
+                ),
               )
             },
             child: Card(
+              //color: Style.bgColor,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[

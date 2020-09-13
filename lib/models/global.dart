@@ -25,4 +25,15 @@ class Global {
       json["TotalRecovered"],
     );
   }
+
+  Map<String, int> toMap() {
+    var map = new Map<String, int>();
+    map.putIfAbsent("NewConfirmed", () => this.newConfirmed);
+    map.putIfAbsent("TotalConfirmed", () => this.totalConfirmed);
+    map.putIfAbsent("NewDeaths", () => this.newDeaths);
+    map.putIfAbsent("TotalDeaths", () => this.totalDeaths);
+    map.putIfAbsent("NewRecovered", () => this.newRecovered);
+    map.putIfAbsent("TotalRecovered", () => this.totalRecovered);
+    return map;
+  }
 }

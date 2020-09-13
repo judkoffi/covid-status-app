@@ -23,8 +23,8 @@ class SummaryCountry {
   String province;
   String city;
   String cityCode;
-  double latitude;
-  double longitude;
+  String latitude;
+  String longitude;
   int confirmed;
   int deaths;
   int recovered;

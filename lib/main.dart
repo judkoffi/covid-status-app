@@ -1,3 +1,4 @@
+import 'package:covid_info_app/common/style.dart';
 import 'package:covid_info_app/di/ioc_locator.dart';
 import 'package:covid_info_app/views/root_page.dart';
 import 'package:flutter/material.dart';
@@ -16,6 +17,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.teal,
         visualDensity: VisualDensity.adaptivePlatformDensity,
+        backgroundColor: Style.bgColor,
       ),
       debugShowCheckedModeBanner: false,
       home: RootPage(
